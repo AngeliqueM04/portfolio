@@ -1,0 +1,63 @@
+---
+name: ange-portfolio-design
+description: Design, layout, and content discipline for Angelique Muteba's quant/risk finance portfolio site. Read before any design or copy decision during the build.
+---
+
+# Kickoff prompt (paste this to Claude Code first)
+
+Read this file in full before doing anything else. Content itself lives in the sibling folders, `01-experience` (case studies, visuals, work experience) and `02-introduction` (bio, mission, connect, headshot). Don't reword or re-derive any of that copy without checking the source file first.
+
+Before writing any layout or component code, read `/mnt/skills/public/frontend-design/SKILL.md` and go through its full brainstorm, explore, plan, critique, build, critique-again process. No color palette or type system has been decided yet, that decision starts now, from this specific brief, not from a template default. Explicitly avoid the three AI-cliché looks the skill names: warm cream plus terracotta, near-black plus neon accent, broadsheet hairline serif.
+
+UI/UX delight, Framer Motion, and the 21st.dev component library are all available in this environment. Use them actively, this site should feel like a genuinely well-designed, polished product, not a bare content dump. A recruiter should notice the craft. That said, craft here means restraint applied well, not maximalism: purposeful micro-interactions, considered spacing and hierarchy, motion that clarifies rather than decorates, and component choices that fit a rigorous finance brief specifically. The failure mode to avoid isn't "using too many tools," it's using them without a specific reason tied to this content, a hover state that doesn't reveal anything, a scroll animation that doesn't aid understanding, a component pulled in because it's available rather than because it's right. Every design choice should be traceable to something this brief actually needs. See `marketing-template-reference.md` in this folder for how finance-specific sites earn a polished, trustworthy feel without sliding into generic marketing-template energy, and use that as the calibration point, not a reason to hold back.
+
+Three specific 21st.dev components have been vetted for this build, use them as the starting point rather than browsing blind:
+
+- **Hero**: two candidates to preview live and compare, don't pick blind. Spotlight, `21st.dev/@manuarora700` (Aceternity), a soft radial glow effect, tune the glow color to the site's single muted accent, not a bright default. Also try ruixen-ui-hero, `21st.dev/@ruixen.ui/components/ruixen-ui-hero`, its actual layout wasn't confirmable from research, preview it directly and pick whichever one actually achieves the Susquehanna-style presence described in the color and type section below, a rich, confident first impression, not a flat centered headline. Either replaces `portfolio-hero`, which is being removed entirely, it clips the headshot through the letterforms and its dark-plus-neon-green combination is one of the three AI-cliché looks already flagged to avoid.
+- **Experience**: Timeline-02, `21st.dev/@ruixen.ui/components/timeline-02`. A vertical milestone timeline with clean typography for dates, titles, and descriptions, minimal and animated without clutter, a genuine fit for a career history.
+- **Sensitivity and comparison tables**: Excel-style table, `21st.dev/@ravikatiyar162/components/excel-style-table`. Preview this one live before committing, same author built two other components already rejected here for being decorative-first (the wildlife circular-gallery carousel and a drag-to-explore media gallery), so verify this one actually serves the data cleanly rather than assuming it matches its sibling components' quality.
+
+Do not use: `portfolio-hero` (see above), `circular-gallery` (decorative wildlife carousel, wrong for structured case study content), any bento-gallery or media-gallery style component (built for photo/video showcases, not project data), and the `about-us-section` component from uniquesonu (built explicitly for an interior design or architecture firm, animated project/client counters, wrong domain, would need a full reskin and would still carry that DNA underneath).
+
+Only `04-apple-thesis-cropped.png` (Apple's Current Price / Base Case Fair Value / Implied Return panel) is a pure stat-number screenshot. That one becomes a live-coded component pulling numbers from `case-studies.md`, not an image, this is what permanently closes out the Apple valuation-range issue, there's no image left to accidentally use the wrong version of.
+
+Every other image across all four case studies is genuine chart or qualitative content and must be kept: Lulu's `01-lulu-thesis.jpg` (the actual acquisition reasoning, three reasons Lululemon should expand, three reasons to acquire Columbia specifically, this is real case study content, not just numbers), `02-lulu-valuation-rigor-cropped.jpg` (deal structure pie chart and comps bar chart), `03-lulu-outcome.jpg` (EPS chart and margin expansion chart), Apple's `05-apple-valuation-rigor.jpg` (DCF sensitivity grid), and `06-apple-outcome.jpg` (why-HOLD reasoning), plus all of iOme's and MortgageIQ's chart images. Float every one of these alongside the paragraph it illustrates, sized to fit the text column, not stacked full-width at the end of the section as an afterthought. If Lulu's thesis reasoning (image 01) reads better as live bulleted text than as a floated image, that's a reasonable alternative, but the reasoning itself must appear somewhere on the page, don't let it disappear along with the stat panel it was bundled with.
+
+Use the Excel-style table component (above) to evaluate whether the Lulu and Apple sensitivity grids should become live tables instead of images too, resolve this the same way as the rest of the image decisions above, keep whichever presentation actually serves the data better.
+
+If anything in the content files reads as inconsistent, flag it, don't silently resolve it.
+
+# The brief
+
+A coded portfolio site (React or HTML, GitHub Pages) for a quant analyst, risk, or corporate finance job search. International student on visa, MS Finance, CFA candidate. Tone is rigorous and numbers led, not a marketing brand site. The audience is a recruiter spending under a minute per page, scanning for evidence of technical rigor and honesty about limitations.
+
+# Page structure, decided
+
+Landing page (`/`) plus two dedicated sub-pages, not one long single-page scroll.
+
+1. **`/` , landing.** Hero (name, one-line focus statement, headshot, see `02-introduction/headshot/`), bio and mission back to back from `02-introduction/bio-and-mission.md` (already checked, they don't repeat each other), a compact preview of all four case studies (not full depth, link through to `/work`), a short experience preview (link through to `/experience`), connect footer.
+2. **`/work`.** Full depth on all four case studies, from `01-experience/case-studies.md`, using visuals from `01-experience/visuals/`. Problem, Approach, Result structure preserved per case study, don't compress or summarize the copy further.
+3. **`/experience`.** Full two-tier list from `01-experience/experience.md`, professional tier first, campus tier visually secondary, not chronologically interleaved.
+4. **Connect** stays a footer present on every page, from `02-introduction/bio-and-mission.md`, email and LinkedIn only for v1. Leave a clearly marked but empty slot for a resume download link and testimonials, to be added in a future version, don't build placeholder UI for them now, just don't structurally block adding them later.
+
+**Not in v1:** a dedicated Skills list section was floated early in planning but never finalized, hold off unless it's explicitly requested, the case studies already demonstrate the relevant skills directly.
+
+# Style rules across all copy
+
+- No dashes used as punctuation anywhere on the site, not in titles, bylines, or body copy. En dashes inside a date or number range are the only exception, spelling the range out in words is preferred where it reads naturally.
+- No AI-tell constructions: avoid "turn X into Y" repeated across sections, avoid slogan-y closers, vary sentence length and rhythm, avoid "isn't just X, it's Y" patterns.
+- Numbers are always the specific verified figure, never rounded loosely. State which scenario a number belongs to.
+- Confidential or NDA-adjacent work stays off the site entirely unless explicitly cleared.
+
+# Outstanding before this site can go live
+
+1. Headshot file not yet supplied, see `02-introduction/headshot/README.md`.
+2. Real email and LinkedIn URL, currently placeholders in `02-introduction/bio-and-mission.md`.
+3. Resume: not linked yet, current draft has placeholder contact fields and a scenario-mismatched iOme bullet (says "about 45% under current policy" and "70x under full benefit cut," should be 53.9% for current policy and 45.1%/70x both under Moderate Cliff specifically). Fix on the source resume file before it's ever attached anywhere.
+4. Apple and Lulu Excel models, for GitHub links, if desired.
+5. Color and type, revised after seeing the first build: the all-dark-everywhere direction did not work, the case study body sections read flat, heavy, and unnatural at content length. Reference: susquehanna.com's actual homepage, a rich, photographic or textured dark hero with bold white headline and a clear single call-to-action, followed by clean, lighter content sections below it, not dark-on-dark all the way down. Apply that pattern here: the hero can stay dark and rich, a textured or photographic backdrop rather than a flat color, but case study pages, experience, and bio sections should move to a lighter, warmer neutral background so long-form content is comfortable to read, not a continuation of the near-black hero. Primary serif is still Newsreader (Google Fonts), do not use Playfair Display or Georgia. Add selective italic use in Newsreader for bylines, subtitles, and pull-quote style callouts, it reads more considered than everything in the same upright weight. Explicitly check that small label and eyebrow text (section tags like "CASE 01," "PROBLEM," "APPROACH," "RESULT") has been updated to the same type system, this was missed in the first pass and is still rendering in a default font. One muted, low-saturation accent color, no neon green. Replace the current teal-monospace pill tag styling, it reads as a generic AI-UI default. The six-box uniform stat-tile grid (equal bordered rectangles, label plus big number, repeated identically) is its own recognizable generic-dashboard pattern, vary the presentation deliberately, different sizes or weights, or blend some figures directly into the prose instead of a rigid identical grid. See the kickoff prompt above for the vetted 21st.dev components and which to avoid. Hold Framer Motion until color and component choices are fully resolved, then add two or three purposeful motion moments only, not page-wide scroll-triggered reveals.
+6. Landing page refinement, post-review: remove the horizontal divider lines between sections on the landing page specifically (hero, bio and mission, case study preview, experience preview, connect), it should read as one continuous flowing page, not stacked blocks. This is landing-page only, keep dividers on `/work` and `/experience` where they separate discrete list items, case studies and timeline entries, that's still useful there for scanability.
+7. The hero currently cuts hard from the dark navy block straight to the cream background below it. Soften that into a gradient blend, navy fading down into the same warm cream tone used on the rest of the site, so the hero introduces the site's palette rather than sitting as a visually separate stacked block on top of it.
+8. Remove the closing footer bar entirely, the one repeating the name and a "Quant · risk · corporate finance" tagline with its own horizontal divider above it. This was never actually specified and reads as an unprompted default flourish, cut it along with its divider line. The Connect section can simply end after the email and LinkedIn details.
+9. Fama-French: fully deferred, own future session, 6 to 10 hours of notebook cleanup before it can be added as a fifth case study.
+10. Testimonials: deferred to a future version, not part of v1.
