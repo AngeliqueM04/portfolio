@@ -23,3 +23,12 @@ Do not add the Policies Impact Model chart, it carries the team's own disclosure
 - `10-mortgageiq-model-comparison.png`, Decision Tree vs Random Forest vs XGBoost, accuracy and AUC
 - `11-mortgageiq-shap-summary.png`, SHAP feature impact beeswarm
 - `12-mortgageiq-feature-importance.png`, feature importance bar chart, optional, only use paired with the leakage note in the case study copy
+
+## MortgageIQ Agent 1 and Agent 2 (original filenames)
+- `shap_global_importance_agent1.png`, Agent 1 feature importance, loan purpose dominant under the four-feature ceiling
+- `agent1_risk_signal_distribution.png`, Agent 1 risk signal spread on the 2016 to 2017 test set
+- `shap_global_importance_agent2.png`, Agent 2 feature importance, DTI and loan purpose nearly tied
+- `shap_dti_dependence_agent2.png`, Agent 2 DTI dependence by value
+- `case_study_comparison.png`, DTI versus LTV threshold shapes and four-case outcome comparison
+- `blk015_race_gap_comparison.png`, unmatched versus full-feature-matched race gap by group
+- `gender_vs_race_resolution.png`, gender fully explained versus race residual

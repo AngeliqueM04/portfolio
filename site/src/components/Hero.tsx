@@ -8,6 +8,10 @@ import { Spotlight } from "@/components/ui/spotlight"
  * and a feature checklist card, not Susquehanna-style presence.
  * Spotlight on a photographic dark field, bold headline, one CTA.
  * Bottom fades into the site cream so the hero introduces the palette.
+ *
+ * Full-bleed headshot with a light navy scrim (noticeably lighter than the
+ * original via-88 / to-55 treatment) so the face stays readable while still
+ * connecting to the dark hero.
  */
 export function Hero() {
   return (
@@ -19,19 +23,20 @@ export function Hero() {
         src={site.headshot}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover object-[center_22%] opacity-45"
+        className="absolute inset-0 z-0 h-full w-full object-cover object-[center_22%]"
         fetchPriority="high"
       />
+      {/* Light scrim — present, but face stays clear */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-hero via-hero/88 to-hero/55"
+        className="absolute inset-0 z-[1] bg-gradient-to-r from-hero via-hero/50 to-hero/18"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-hero/45"
+        className="absolute inset-0 z-[1] bg-gradient-to-t from-transparent via-transparent to-hero/20"
         aria-hidden="true"
       />
       <Spotlight
-        className="-top-32 left-0 md:-top-16 md:left-40"
+        className="-top-32 left-0 z-[1] md:-top-16 md:left-40"
         fill="#6E7F68"
       />
 
@@ -57,7 +62,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Navy → cream blend into the landing page below */}
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-36 bg-gradient-to-b from-transparent via-bg/55 to-bg sm:h-44"
         aria-hidden="true"

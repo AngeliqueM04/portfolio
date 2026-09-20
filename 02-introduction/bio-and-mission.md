@@ -2,7 +2,7 @@
 
 ## Bio
 
-I'm finishing my MS in Finance at Johns Hopkins Carey Business School this December, working toward a CFA charter. Right now I'm interning at True Bearing Diagnostics, where the work is genuinely a little bit of everything: investor outreach through HubSpot and IQ500, backend site infrastructure through Cloudflare, and financial reporting in Excel and QuickBooks.
+I'm finishing my MS in Finance at Johns Hopkins Carey Business School this December, working toward a CFA charter. I recently interned at True Bearing Diagnostics, where the work was genuinely a little bit of everything: investor outreach through HubSpot and IQ500, backend site infrastructure through Cloudflare, and financial reporting in Excel and QuickBooks.
 
 It's given me a clear look at how closely a company's financial story, its systems, and its daily operations depend on each other. I'm looking for roles where that kind of scrutiny isn't a nice to have, it's the actual job, whether that's risk, quant work, or the corporate finance side of the business.
 

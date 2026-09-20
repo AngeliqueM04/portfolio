@@ -4,8 +4,8 @@ Two tiers. External, professional roles first. Campus and teaching roles after, 
 
 ## Professional
 
-**True Bearing Diagnostics, Strategic Operations and Capital Markets Intern** (June 2026 to present)
-Supporting the CEO directly on an active Series A raise for a pre revenue biotech company advancing toward FDA 510(k) clearance. The work covers investor pipeline management and data room prep, market sizing and competitive research, and the operational side, including CRM systems, site infrastructure, and financial reporting.
+**True Bearing Diagnostics, Strategic Operations and Capital Markets Intern** (June to August 2026)
+Supported the CEO directly on an active Series A raise for a pre revenue biotech company advancing toward FDA 510(k) clearance. The work covered investor pipeline management and data room prep, market sizing and competitive research, and the operational side, including CRM systems, site infrastructure, and financial reporting.
 
 **Student Managed Investment Fund, Investment Analyst** (August to December 2024, University of Kentucky)
 Covered three equity positions inside a $5.5 million student managed endowment. Built Excel models evaluating return drivers and risk adjusted performance, wrote investment memos, and presented buy, hold, and sell recommendations to the investment committee.
