@@ -1,10 +1,13 @@
+const asset = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`
+
 export const site = {
   name: "Angelique Muteba",
   focus:
     "MS Finance, Johns Hopkins Carey. Valuation, risk modeling, and underwriting with numbers you can verify.",
   email: "angelique.muteba0@gmail.com",
   linkedin: "https://www.linkedin.com/in/angeliquemuteba/",
-  headshot: "./headshot/headshot.jpg",
+  headshot: asset("headshot/headshot.jpg"),
 }
 
 export const bio = `I'm finishing my MS in Finance at Johns Hopkins Carey Business School this December, working toward a CFA charter. I recently interned at True Bearing Diagnostics, where the work was genuinely a little bit of everything: investor outreach through HubSpot and IQ500, backend site infrastructure through Cloudflare, and financial reporting in Excel and QuickBooks.
@@ -131,13 +134,13 @@ export const caseStudies: CaseStudy[] = [
         ],
         visuals: [
           {
-            src: "./visuals/10-mortgageiq-model-comparison.png",
+            src: asset("visuals/10-mortgageiq-model-comparison.png"),
             alt: "Decision Tree vs Random Forest vs XGBoost accuracy and AUC",
             beside: "approach",
             size: "wide",
           },
           {
-            src: "./visuals/11-mortgageiq-shap-summary.png",
+            src: asset("visuals/11-mortgageiq-shap-summary.png"),
             alt: "SHAP feature impact beeswarm plot",
             beside: "result",
             size: "wide",
@@ -188,12 +191,12 @@ export const caseStudies: CaseStudy[] = [
         ],
         visuals: [
           {
-            src: "./visuals/shap_global_importance_agent1.png",
+            src: asset("visuals/shap_global_importance_agent1.png"),
             alt: "Agent 1 SHAP global feature importance, loan purpose dominant under the four-feature ceiling",
             beside: "approach",
           },
           {
-            src: "./visuals/agent1_risk_signal_distribution.png",
+            src: asset("visuals/agent1_risk_signal_distribution.png"),
             alt: "Agent 1 risk signal spread across the 2016 to 2017 test set",
             beside: "result",
             size: "wide",
@@ -264,28 +267,28 @@ export const caseStudies: CaseStudy[] = [
         ],
         visuals: [
           {
-            src: "./visuals/shap_global_importance_agent2.png",
+            src: asset("visuals/shap_global_importance_agent2.png"),
             alt: "Agent 2 SHAP global importance, DTI and loan purpose nearly tied",
             beside: "approach",
           },
           {
-            src: "./visuals/shap_dti_dependence_agent2.png",
+            src: asset("visuals/shap_dti_dependence_agent2.png"),
             alt: "Agent 2 DTI dependence plot showing where the risk penalty concentrates",
             beside: "approach",
           },
           {
-            src: "./visuals/case_study_comparison.png",
+            src: asset("visuals/case_study_comparison.png"),
             alt: "DTI versus LTV threshold shapes and four-case outcome comparison including Phase 1",
             beside: "result",
             size: "wide",
           },
           {
-            src: "./visuals/blk015_race_gap_comparison.png",
+            src: asset("visuals/blk015_race_gap_comparison.png"),
             alt: "Unmatched versus full-feature-matched race gap by group",
             beside: "result",
           },
           {
-            src: "./visuals/gender_vs_race_resolution.png",
+            src: asset("visuals/gender_vs_race_resolution.png"),
             alt: "Gender fully explained versus race residual, side by side",
             beside: "result",
           },
@@ -328,17 +331,17 @@ export const caseStudies: CaseStudy[] = [
     tables: [],
     visuals: [
       {
-        src: "./visuals/07-iome-three-pillar-thesis.png",
+        src: asset("visuals/07-iome-three-pillar-thesis.png"),
         alt: "Current three-pillar retirement system overview",
         beside: "problem",
       },
       {
-        src: "./visuals/08-iome-model-output-trajectory.png",
+        src: asset("visuals/08-iome-model-output-trajectory.png"),
         alt: "Retirement security by age and income bracket",
         beside: "approach",
       },
       {
-        src: "./visuals/09-iome-saving-gap-70x.png",
+        src: asset("visuals/09-iome-saving-gap-70x.png"),
         alt: "Saving gap chart with 70x inequality annotation",
         beside: "result",
       },
@@ -385,12 +388,12 @@ export const caseStudies: CaseStudy[] = [
     ],
     visuals: [
       {
-        src: "./visuals/05-apple-valuation-rigor.jpg",
+        src: asset("visuals/05-apple-valuation-rigor.jpg"),
         alt: "DCF sensitivity analysis grid across WACC and terminal growth",
         beside: "approach",
       },
       {
-        src: "./visuals/06-apple-outcome.jpg",
+        src: asset("visuals/06-apple-outcome.jpg"),
         alt: "Why HOLD despite overvaluation",
         beside: "result",
       },
@@ -458,12 +461,12 @@ export const caseStudies: CaseStudy[] = [
     ],
     visuals: [
       {
-        src: "./visuals/02-lulu-valuation-rigor-cropped.jpg",
+        src: asset("visuals/02-lulu-valuation-rigor-cropped.jpg"),
         alt: "Deal structure pie chart and comparable company analysis",
         beside: "approach",
       },
       {
-        src: "./visuals/03-lulu-outcome.jpg",
+        src: asset("visuals/03-lulu-outcome.jpg"),
         alt: "Proforma EPS and margin expansion outcome charts",
         beside: "result",
       },
