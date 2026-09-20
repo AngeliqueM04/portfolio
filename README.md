@@ -1,4 +1,4 @@
-# Portfolio content, organized for Claude Code handoff
+# Portfolio content
 
 ## Folder structure
 
