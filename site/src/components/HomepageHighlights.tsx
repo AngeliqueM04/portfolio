@@ -65,6 +65,11 @@ export function HomepageHighlights() {
             <p className="mt-2 font-serif text-base italic text-fg-muted">
               {active.category}
             </p>
+            {active.note ? (
+              <p className="mt-1 font-serif text-sm text-fg-muted">
+                {active.note}
+              </p>
+            ) : null}
 
             <div className="mt-8 space-y-6">
               {(

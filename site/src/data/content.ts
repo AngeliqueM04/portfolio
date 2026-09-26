@@ -77,6 +77,7 @@ export type HomepageHighlight = {
   id: string
   title: string
   category: string
+  note?: string
   problem: string
   approach: string
   result: string
@@ -570,13 +571,13 @@ export const homepageHighlights: HomepageHighlight[] = [
     title: "MortgageIQ",
     category: "Credit Risk",
     problem:
-      "Small mortgage lenders don't have access to the kind of risk-scoring tools big banks use, and any model built to fill that gap has to hold up to fair-lending law, not just look accurate.",
+      "Small mortgage lenders lack access to the kind of risk-scoring tools large banks use, and any model built to fill that gap has to satisfy fair-lending law as well as raw predictive accuracy.",
     approach:
-      "Built three models in sequence (Phase 1, Agent 1, Agent 2), comparing model types, stress-testing against a real historical crisis (the 2008 downturn), and testing fairness across gender and race.",
+      "Three models were built in sequence, Phase 1, Agent 1, and Agent 2, comparing model types, stress-testing against a real historical crisis (the 2008 downturn), and testing fairness across gender and race.",
     result:
-      "The first version looked nearly perfect, a 99.6% accuracy score, until she caught it cheating, using information a real application wouldn't have. The honest rebuild scored 83%, closed a fairness gap for gender entirely, and left a smaller race-based gap disclosed as unresolved rather than hidden.",
+      "The first version looked nearly perfect, a 99.6% accuracy score, until further testing revealed it was relying on information a real application would never have. The honest rebuild scored 83%, closed the fairness gap for gender entirely, and disclosed a smaller, unresolved gap for race. The applicant profile that first exposed the flaw, approved at 125% debt-to-income by the original version, is correctly denied by the final model with 96.4% confidence.",
     whyItMatters:
-      "In lending, a model that looks accurate isn't the same as a model that's trustworthy. This project shows the discipline to catch your own mistake, fix it, and be upfront about what's still unsolved, exactly what a regulated lending or fintech risk team actually needs.",
+      "In lending, accuracy and trustworthiness are separate qualities, and a model needs both. This project demonstrates the discipline to catch a mistake, fix it, and disclose what remains unsolved, exactly what a regulated lending or fintech risk team needs.",
     graph: {
       src: asset("visuals/gender_vs_race_resolution.png"),
       alt: "Gender fully explained versus race residual after matching",
@@ -587,13 +588,13 @@ export const homepageHighlights: HomepageHighlight[] = [
     title: "Fraud Detection",
     category: "Machine Learning",
     problem:
-      "Detect fraudulent online transactions in a large, imbalanced dataset without flooding legitimate customers with false alerts.",
+      "The goal was to detect fraudulent online transactions in a large, imbalanced dataset while keeping false alerts on legitimate customers to a minimum.",
     approach:
-      "Built a Python fraud detection pipeline on 590,000+ transactions and 499 features, comparing multiple model types to find the strongest performer.",
+      "A fraud detection pipeline was built on 590,000+ transactions and 499 features, comparing multiple model types to identify the strongest performer.",
     result:
-      "The selected model (XGBoost) scored 0.53 on the metric that matters most for rare-event detection (PR-AUC), catching about half of all fraud while wrongly flagging fewer than 2 in 100 legitimate transactions.",
+      "The selected model, XGBoost, scored 0.53 on the metric that matters most for rare-event detection (PR-AUC), catching about half of all fraud while incorrectly flagging fewer than 2 in 100 legitimate transactions. A cross-validation comparison further confirmed that a standard random-sampling approach would have selected a weaker configuration than the time-aware method used here, a distinction verified directly on the held-out test set.",
     whyItMatters:
-      "Every fraud system trades off catching bad actors against not punishing good customers. This shows she can tune a model to that real tradeoff deliberately, not just chase the highest score on paper.",
+      "Every fraud system trades off catching bad actors against penalizing good customers. This demonstrates the ability to tune a model deliberately to that real tradeoff, weighing the true cost of a false positive alongside the raw score.",
     graph: {
       src: asset("visuals/chart_model_comparison_pr.png"),
       alt: "Precision-recall curves comparing Decision Tree, Random Forest, and XGBoost",
@@ -603,14 +604,15 @@ export const homepageHighlights: HomepageHighlight[] = [
     id: "iome",
     title: "iOme Retirement Challenge",
     category: "Retirement Policy",
+    note: "Top 3 National Finalist, iOme Research Challenge",
     problem:
       "America's retirement system, Social Security, 401(k)s, and personal savings, is failing at once, and the failure lands hardest on the people least able to absorb it.",
     approach:
-      "Built a simulation modeling 10,000 possible financial futures for workers at three income levels, then designed and individually priced three policy fixes.",
+      "A simulation modeling 10,000 possible financial futures was built for workers at three income levels, and three policy reforms were then designed and individually priced.",
     result:
-      "A typical worker's odds of retiring securely are close to a coin flip today, and get worse once Social Security's funding shortfall hits in 2033. The strongest fix alone freed up $71.57 trillion in public support, but even all three reforms combined still left nearly half of middle-income workers short.",
+      "A typical worker's odds of retiring securely are close to a coin flip today, and worsen once Social Security's funding shortfall hits in 2033: a low-income worker needs roughly 70 times the additional savings a high-income worker needs just to stay on track. The strongest fix alone freed up $71.57 trillion in public support, but even all three reforms combined still left nearly half of middle-income workers short of a secure retirement.",
     whyItMatters:
-      "This is policy research with real stakes, not a classroom exercise, and it ranked in the top 3 nationally. It also shows the same honesty pattern as MortgageIQ, a solution that helps, stated plainly as not being a full fix.",
+      "Most retirement policy proposals are presented as solutions. This project tested that framing directly, pricing three reforms individually and reporting the actual result, including where it fell short: nearly half of middle-income workers remained insecure even with every reform applied. Quantifying a policy's real limits alongside its intended benefit is what distinguishes rigorous policy analysis from advocacy.",
     graph: {
       src: asset("visuals/08-iome-model-output-trajectory.png"),
       alt: "Retirement security by age and income bracket across policy scenarios",
