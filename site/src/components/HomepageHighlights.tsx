@@ -12,7 +12,7 @@ export function HomepageHighlights() {
 
   return (
     <section className="bg-bg" aria-labelledby="highlights-heading">
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <div className="mx-auto max-w-6xl px-5 pt-8 pb-16 sm:px-8 sm:pt-10 sm:pb-20">
         <div className="max-w-2xl">
           <p className="eyebrow">Highlighted work</p>
           <h2
@@ -56,7 +56,7 @@ export function HomepageHighlights() {
           role="tabpanel"
           id={`highlight-panel-${active.id}`}
           aria-labelledby={`highlight-tab-${active.id}`}
-          className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] lg:items-start lg:gap-12"
+          className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] lg:items-center lg:gap-12"
         >
           <div className="min-w-0">
             <h3 className="font-serif text-2xl font-semibold tracking-tight text-fg">
