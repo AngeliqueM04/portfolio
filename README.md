@@ -1,22 +1,30 @@
-# Portfolio content
+# Angelique Muteba, Portfolio
 
-## Folder structure
+Live at [angeliquem04.github.io/portfolio](https://AngeliqueM04.github.io/portfolio/)
 
-**01-experience/**
-- `case-studies.md`, all four locked case studies (Lululemon, Apple, iOme, MortgageIQ)
-- `visuals/`, every case study image, renamed clearly and numbered in reading order, with `00-manifest.md` explaining what each one is
-- `experience.md`, work experience, two tiers
+A portfolio site built around case studies from quantitative finance and risk work, MS Finance coursework and independent projects. Four case studies currently live:
 
-**02-introduction/**
-- `bio-and-mission.md`, bio, mission statement, and the connect section (email and LinkedIn placeholders inside, fill in before use)
-- `headshot/`, empty, drop the real headshot file here before starting the build, `README.md` inside has instructions
+- **MortgageIQ**, an ML credit risk model for mortgage underwriting, including a two-part follow-on study on target leakage and fairness across income and race
+- **iOme Retirement Challenge**, a lifecycle Monte Carlo simulation on Gen Z retirement security, national top 3 finalist
+- **Apple Inc. Equity Research**, a blended DCF and comps valuation with a HOLD recommendation
+- **Lululemon x Columbia**, an M&A advisory case evaluating an acquisition scenario
 
-**03-design/**
-- `skill.md`, the file to point Claude Code at first, contains the kickoff prompt, decided page structure, and the full outstanding-items list
-- `marketing-template-reference.md`, research on how finance sites differ from generic marketing templates, meant to inform the color and layout brainstorm, not dictate it
+Every number on the site traces back to an underlying model or dataset, nothing here is a summary written without the work behind it.
 
-## Before you move to Claude Code
+## Stack
 
-1. Add the real headshot file to `02-introduction/headshot/`
-2. Fill in the real email and LinkedIn URL in `02-introduction/bio-and-mission.md` (currently placeholders)
-3. Everything else is ready as is, including all four case studies, all visuals, and the previously corrupted Lulu EPS chart, which has been rebuilt from the model's actual data and is no longer an open item
+Built with React and Vite, deployed to GitHub Pages through GitHub Actions on every push to `main`. Uses HashRouter for client-side routing under GitHub Pages' static hosting.
+
+## Running locally
+
+\`\`\`
+npm install
+npm run dev
+\`\`\`
+
+Site runs at `http://127.0.0.1:5173/portfolio/`.
+
+## Contact
+
+angelique.muteba0@gmail.com
+[linkedin.com/in/angeliquemuteba](https://www.linkedin.com/in/angeliquemuteba/)
