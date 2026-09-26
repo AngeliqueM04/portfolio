@@ -51,7 +51,7 @@ Image: `agent1_risk_signal_distribution.png`, risk signal spread across the 2016
 **Gender gap (matched): +0.6 percentage points.** Resolved; the hypothesis confirmed. DTI and LTV explain the gap Agent 1 flagged.
 **Race gap (residual): 2.6 to 4.9 percentage points**, across four of five groups, after matching on every legitimate risk factor in the model. An open finding, not yet resolved.
 
-**The problem:** Two things needed testing. First, Agent 1's hypothesis: would a model with genuine DTI and LTV data actually close the fairness gap that a four-feature model could not reach? Second, unplanned at the outset: confirming or ruling out the interest-rate leak suspected in Phase 1. A null-rate check settled the second question decisively, the rate field was missing for 98.5% of denied applications and only 0.36% of approved ones. Phase 1's headline number was never a clean measurement of predictive power. This model needed to be honest from the start, not accurate by accident.
+**The problem:** Two things needed testing. First, Agent 1's hypothesis: would a model with genuine DTI and LTV data actually close the fairness gap that a four-feature model could not reach? Second, unplanned at the outset: confirming or ruling out the interest-rate leak suspected in Phase 1. A null-rate check settled the second question decisively: the rate field was missing for 98.5% of denied applications and only 0.36% of approved ones. Phase 1's headline number was never a clean measurement of predictive power. This model needed to be honest from the start, not accurate by accident.
 
 **Approach:** XGBoost was trained on 2018 to 2024 HMDA data using 10 features, including genuine debt-to-income and loan-to-value ratios, with interest rate explicitly excluded. Monotonic constraints were applied from the first training run this time, rather than retrofitted after the fact as they were for Agent 1. Feeding Agent 1's own output back in as a feature was tested and produced a negligible to negative change in AUC, so it was dropped. The full fairness audit ran twice, once for gender, and for the first time in this project, once for race, closing a measurement gap that Agent 1's schema made impossible to even attempt. The gender result matched a single confounder check. The race result did not, so the analysis extended further: full-feature propensity-score matching across every risk factor in the model, not just two variables.
 
@@ -87,31 +87,31 @@ Independent project, IEEE-CIS Fraud Detection dataset (Kaggle)
 
 **The problem:** E-commerce platforms lose real money to fraud, but a model tuned to catch fraud aggressively ends up blocking legitimate customers, which costs a business just as much in a different way. The problem is compounded by class imbalance: only 3.5% of transactions in a typical dataset are actually fraudulent, so a naive accuracy score can look excellent while catching almost nothing real. This project treats that tradeoff as the central problem to solve rather than an afterthought once a headline metric looks good.
 
-**Approach:** Built a fraud detection pipeline on 590,540 real e-commerce transactions (a 3.5% fraud rate) spanning roughly 182 days, merging two source files on transaction ID and expanding to 499 features after cleaning. Verified data integrity first, no duplicate keys, no row count drift after the merge. Rather than dropping fields that were 90%+ empty, tested whether the absence of data was itself predictive, it was, so missingness got encoded as a feature instead of thrown away.
+**Approach:** A fraud detection pipeline was built on 590,540 real e-commerce transactions (a 3.5% fraud rate) spanning roughly 182 days, merging two source files on transaction ID and expanding to 499 features after cleaning. Data integrity was verified first: no duplicate keys, and no row count drift after the merge. Rather than dropping fields that were more than 90% empty, the absence of data itself was tested for predictive value. It was predictive, so missingness was encoded as a feature instead of discarded.
 
 Image: `chart_missingness.png`, distribution of missingness across all columns, the basis for each drop-or-keep-as-signal decision.
 
-Split the data chronologically (60/20/20 by transaction time, never randomly shuffled), since a real fraud system only ever predicts the future from the past, across a window where the daily fraud rate itself swung from 1.1% to 7.0%.
+The data was split chronologically (60/20/20 by transaction time, never randomly shuffled), since a real fraud system only ever predicts the future from the past. Across this window, the daily fraud rate itself swung from 1.1% to 7.0%.
 
 Image: `chart_daily_volume_fraud_rate.png`, daily transaction volume and daily fraud rate across the full 182-day window, showing how volatile the fraud rate actually is day to day.
 
-Compared three model types (Decision Tree, Random Forest, XGBoost) and ran a leakage audit checking every feature's standalone predictive power before trusting any result.
+Three model types (Decision Tree, Random Forest, XGBoost) were compared, and a leakage audit checked every feature's standalone predictive power before any result was trusted.
 
 **A methods finding worth stating on its own:** tuning XGBoost with standard random cross-validation and with time-respecting cross-validation produced different answers. Random cross-validation kept rewarding additional model complexity without limit, while time-respecting cross-validation correctly identified that the most complex setting actually performed worse on genuinely future data. Both candidates were tested on the true held-out test set to settle the question, and the time-respecting choice won by a real margin. A validation method that appeared reasonable on its surface was not, and the error was caught before it could ship.
 
-**Result:** XGBoost was the strongest of the three models tested (Decision Tree 0.36, Random Forest 0.45, XGBoost 0.53 on PR-AUC, the right metric here since accuracy alone is misleading when only 3.5% of transactions are fraud).
+**Result:** XGBoost was the strongest of the three models tested (Decision Tree 0.36, Random Forest 0.45, XGBoost 0.53 on PR-AUC, the appropriate metric here since accuracy alone is misleading when only 3.5% of transactions are fraud).
 
 Image: `chart_model_comparison_pr.png`, precision-recall curves for all three models on the locked test set, side by side.
 
-At an operating point catching about half of all fraud, the model wrongly declined 1.82% of legitimate transactions, 2,073 false declines against 2,032 real fraud cases caught, a deliberate tradeoff point, not an accident. The leakage audit came back clean, the single strongest individual feature only reached 0.68 AUC on its own, a real signal, not a sign the model was secretly seeing the answer.
+At an operating point catching about half of all fraud, the model incorrectly declined 1.82% of legitimate transactions, 2,073 false declines against 2,032 real fraud cases caught. This was a deliberate tradeoff, set intentionally rather than left to chance. The leakage audit returned clean: the single strongest individual feature reached only 0.68 AUC on its own, indicating a real signal rather than a sign the model was drawing on the answer directly.
 
-Explainability was checked two independent ways rather than resting the claim on one method.
+Explainability was checked two independent ways, so the claim did not rest on a single method's assumptions.
 
 Image: `chart_shap_summary.png`, the top 15 features driving fraud predictions, and which direction each one pushes the model.
 
 Image: `chart_pdp_transactionamt.png`, the isolated shape of transaction amount's effect on predicted fraud probability.
 
-A segment robustness check turned up something not obvious going in: false-positive rates were highest at both very small and very large transaction amounts, a U-shape, not the "only small transactions get flagged" pattern that's often assumed.
+A segment robustness check surfaced a less obvious pattern: false-positive rates were highest at both very small and very large transaction amounts, a U-shape rather than the commonly assumed pattern where only small transactions get flagged.
 
 Image: `chart_segment_fpr_quintile.png`, false-positive rate by transaction amount quintile, showing the U-shape directly.
 
@@ -126,9 +126,9 @@ Group project with Ananya Shrivastava, Mpho Olatotse, Jianzhuo Chang, and Yuer L
 
 **The problem:** America's three-pillar retirement system, Social Security, employer 401(k)s, and personal savings, is failing all at once, and the failure falls hardest on the workers least equipped to absorb it. A median-income Gen Z worker doing everything the system asks has only a 53.9% chance of retiring securely under current policy. Once the 2033 Social Security trust fund depletion is priced in, that probability drops to 45.1%. Under a moderate benefit cut, a low-income worker needs 26.2 additional percentage points of gross income saved just to stay on track, while a high-income worker needs only 0.4. That gap amounts to a 70x inequality multiplier, built into the system's design rather than into anyone's individual behavior.
 
-**Approach:** Built a lifecycle Monte Carlo simulation, 10,000 paths per scenario with market crisis shocks embedded, calibrated to SSA, IRS, BLS, and EBRI data. Modeled three income brackets ($35K, $65K, $120K) from workforce entry in 2025 through retirement in 2068 across five Social Security benefit scenarios, then proposed three structural reforms, a Sovereign Wealth Fund, a Retirement Preservation Account, and a Retirement Health Account, each costed independently and stress tested across 2,500 additional simulations.
+**Approach:** A lifecycle Monte Carlo simulation was built, running 10,000 paths per scenario with market crisis shocks embedded and calibrated to SSA, IRS, BLS, and EBRI data. Three income brackets ($35K, $65K, $120K) were modeled from workforce entry in 2025 through retirement in 2068, across five Social Security benefit scenarios. Three structural reforms were then proposed, a Sovereign Wealth Fund, a Retirement Preservation Account, and a Retirement Health Account, each costed independently and stress tested across 2,500 additional simulations.
 
-**Result:** Even with all three reforms combined, only 50.5% of mid-income and 23.8% of low-income Gen Z workers reach retirement security. The reforms narrow the gap, but they can't close it without Social Security's benefit floor staying intact. The Sovereign Wealth Fund alone cuts net public support needed from $368.93T to $297.36T against the PAYGO baseline, while still protecting 100% of scheduled benefits through the transition.
+**Result:** Even with all three reforms combined, only 50.5% of mid-income and 23.8% of low-income Gen Z workers reach retirement security. The reforms narrow the gap, but they cannot close it without Social Security's benefit floor staying intact. The Sovereign Wealth Fund alone cuts net public support needed from $368.93T to $297.36T against the PAYGO baseline, while still protecting 100% of scheduled benefits through the transition.
 
 Images: `07-iome-three-pillar-thesis.png`, `08-iome-model-output-trajectory.png`, `09-iome-saving-gap-70x.png`
 
