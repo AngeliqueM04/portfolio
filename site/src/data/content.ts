@@ -11,7 +11,7 @@ export const site = {
 
 export const mission = `I'm passionate about building financial models rigorous enough for technical teams, practical enough for risk committees, and clear enough to drive decisions.`
 
-export const bio = `Training as a finance professional, I design models meant to be interrogated, not just trusted, across equity valuation, machine learning based credit risk modeling, and quantitative research. My toolkit includes Python and XGBoost for building models, SHAP for explaining what they actually did and why, and Excel based DCF modeling and Monte Carlo simulation for the more traditional side of the work.`
+export const bio = `Training as a finance professional, I design models built to be interrogated rather than simply trusted, across equity valuation, machine learning based credit risk modeling, and quantitative research. My toolkit spans Python, XGBoost, and SHAP for building and explaining models, Excel and Monte Carlo simulation for traditional analysis, and Tableau and Power BI for reporting, all grounded in time-series aware validation and hypothesis testing.`
 
 export const connectIntro = `Always glad to talk models or markets, and currently exploring roles in risk, quantitative finance, and payments, where I want to help teams build models that hold up.`
 
