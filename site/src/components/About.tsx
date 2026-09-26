@@ -10,7 +10,7 @@ export function About() {
         >
           About
         </h2>
-        <blockquote className="mt-8 max-w-3xl border-l-2 border-accent pl-5 font-serif text-xl italic leading-relaxed text-fg sm:text-2xl">
+        <blockquote className="mt-8 max-w-3xl font-serif text-xl italic leading-relaxed text-fg sm:text-2xl">
           &ldquo;{mission}&rdquo;
         </blockquote>
         <p className="mt-6 max-w-3xl font-serif text-[1.05rem] leading-relaxed text-fg-muted">
