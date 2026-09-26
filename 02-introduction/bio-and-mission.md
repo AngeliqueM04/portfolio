@@ -1,23 +1,31 @@
-# Bio, mission, and connect
+# About and Connect
 
-## Bio
+Bio and Mission are merged into one "About" section, no separate Bio/Mission headers. Mission sits as a leading pull-quote (italic Newsreader treatment), bio paragraph directly underneath. Hero subhead is separate, sits under the name on the landing page, deliberately has no overlapping content with About below it.
 
-I'm finishing my MS in Finance at Johns Hopkins Carey Business School this December, working toward a CFA charter. I recently interned at True Bearing Diagnostics, where the work was genuinely a little bit of everything: investor outreach through HubSpot and IQ500, backend site infrastructure through Cloudflare, and financial reporting in Excel and QuickBooks.
+## Hero subhead
 
-It's given me a clear look at how closely a company's financial story, its systems, and its daily operations depend on each other. I'm looking for roles where that kind of scrutiny isn't a nice to have, it's the actual job, whether that's risk, quant work, or the corporate finance side of the business.
+MS Finance Candidate, Johns Hopkins Carey Business School
 
-## Mission
+## About
 
-I build financial models that turn complexity into decisions people can stand behind. Rigorous forecasting, real risk analysis, numbers that hold up under pressure, not gut calls dressed up in a spreadsheet. I want people to trust the number, understand why it works, and feel confident acting on it.
+Mission (pull-quote):
+
+"I'm passionate about building financial models rigorous enough for technical teams, practical enough for risk committees, and clear enough to drive decisions."
+
+Bio:
+
+Training as a finance professional, I design models meant to be interrogated, not just trusted, across equity valuation, machine learning based credit risk modeling, and quantitative research. My toolkit includes Python and XGBoost for building models, SHAP for explaining what they actually did and why, and Excel based DCF modeling and Monte Carlo simulation for the more traditional side of the work.
+
+No standalone skills list anywhere on the site, Python/XGBoost/SHAP/Excel/Monte Carlo only appear woven into this bio paragraph, deliberate, not an oversight.
 
 ## Connect
 
-I'm always glad to talk models, markets, or anything on this site. If something here resonated, or you just want to say hello, reach out.
+Always glad to talk models or markets, and currently exploring roles in risk, quantitative finance, and payments, where I want to help teams build models that hold up.
 
-Email:angelique.muteba0@gmail.com
-LinkedIn:https://www.linkedin.com/in/angeliquemuteba/ 
+Email: angelique.muteba0@gmail.com
+LinkedIn: https://www.linkedin.com/in/angeliquemuteba/
 
-No phone number on the site. No job-search language repeated here, the bio and mission already carry that.
+No phone number on the site. Role-targeting language lives only here in Connect, not in the bio, that content was deliberately cut from the bio earlier for reading as over-explained there.
 
 **Future versions only, not v1:**
 - Resume download link, hold until the resume itself is corrected (placeholder contact fields and a scenario-mismatched iOme bullet both need fixing on the source file first)

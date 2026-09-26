@@ -14,12 +14,12 @@ export function HomepageHighlights() {
     <section className="bg-bg" aria-labelledby="highlights-heading">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="max-w-2xl">
-          <p className="eyebrow">Selected work</p>
+          <p className="eyebrow">Highlighted work</p>
           <h2
             id="highlights-heading"
             className="mt-3 font-serif text-3xl font-semibold tracking-tight text-fg"
           >
-            Highlights
+            Highlighted work
           </h2>
         </div>
 
@@ -100,7 +100,7 @@ export function HomepageHighlights() {
             to="/work"
             className="font-sans text-sm font-medium text-accent underline-offset-4 hover:underline"
           >
-            See all work
+            See the detailed work
           </Link>
         </div>
       </div>

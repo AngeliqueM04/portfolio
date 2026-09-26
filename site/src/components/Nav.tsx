@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 
 const links = [
   { to: "/", label: "Home", end: true },
-  { to: "/work", label: "Work", end: false },
+  { to: "/work", label: "Detailed Work", end: false },
   { to: "/experience", label: "Experience", end: false },
 ]
 

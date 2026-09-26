@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import type { ReactNode } from "react"
 import {
   caseStudies,
@@ -68,7 +69,7 @@ function NarrativeBlock({
       <div
         className={
           hasVisuals
-            ? "mt-3 flex flex-col gap-5 lg:flex-row lg:items-start lg:gap-8"
+            ? "mt-3 flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-8"
             : "mt-3"
         }
       >
@@ -212,8 +213,13 @@ function CaseArticle({
       id={study.id}
       className="scroll-mt-24 border-t border-line pt-14 first:border-t-0 first:pt-0"
     >
-      <p className="eyebrow">Case {String(index + 1).padStart(2, "0")}</p>
-      <h2 className="mt-2 font-serif text-2xl font-semibold leading-snug tracking-tight text-fg sm:text-3xl">
+      <p
+        className="font-serif text-5xl font-bold leading-none tracking-tight text-fg tabular-nums sm:text-6xl"
+        aria-label={`Case ${String(index + 1).padStart(2, "0")}`}
+      >
+        {String(index + 1).padStart(2, "0")}
+      </p>
+      <h2 className="mt-4 font-serif text-2xl font-semibold leading-snug tracking-tight text-fg sm:text-3xl">
         {study.title}
       </h2>
       {study.category ? (
@@ -257,13 +263,20 @@ function CaseArticle({
 }
 
 export function WorkPage() {
+  useEffect(() => {
+    document.title = "Detailed Work — Angelique Muteba"
+    return () => {
+      document.title = "Angelique Muteba"
+    }
+  }, [])
+
   return (
     <div className="bg-bg">
       <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
         <header className="max-w-2xl">
-          <p className="eyebrow">Work</p>
+          <p className="eyebrow">Detailed work</p>
           <h1 className="mt-3 font-serif text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
-            Case studies
+            Detailed work
           </h1>
           <p className="mt-4 font-serif italic text-fg-muted">
             Full Problem, Approach, and Result writeups with figures sourced
