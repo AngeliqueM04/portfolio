@@ -211,7 +211,7 @@ function CaseArticle({
   return (
     <article
       id={study.id}
-      className="scroll-mt-24 border-t border-line pt-14 first:border-t-0 first:pt-0"
+      className="scroll-mt-24 border-t border-line py-8 first:border-t-0 first:pt-0 sm:py-10"
     >
       <p
         className="font-serif text-5xl font-bold leading-none tracking-tight text-fg tabular-nums sm:text-6xl"
@@ -272,7 +272,7 @@ export function WorkPage() {
 
   return (
     <div className="bg-bg">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
+      <div className="section-pad">
         <header className="max-w-2xl">
           <p className="eyebrow">Detailed work</p>
           <h1 className="mt-3 font-serif text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
@@ -285,7 +285,7 @@ export function WorkPage() {
           </p>
         </header>
 
-        <div className="mt-16 space-y-24">
+        <div className="mt-8">
           {caseStudies.map((study, index) => (
             <CaseArticle key={study.id} study={study} index={index} />
           ))}

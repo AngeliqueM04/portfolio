@@ -10,8 +10,8 @@ import {
 export function ExperiencePage() {
   return (
     <div className="bg-bg">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
-        <header className="mb-14 max-w-2xl">
+      <div className="section-pad">
+        <header className="mb-8 max-w-2xl sm:mb-10">
           <p className="eyebrow">Experience</p>
           <h1 className="mt-3 font-serif text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
             Professional and campus roles

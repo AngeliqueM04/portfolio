@@ -3,7 +3,7 @@ import { connectIntro, site } from "@/data/content"
 export function Connect() {
   return (
     <section id="connect" className="bg-bg" aria-labelledby="connect-heading">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-16">
+      <div className="section-pad">
         <p className="eyebrow">Connect</p>
         <h2
           id="connect-heading"

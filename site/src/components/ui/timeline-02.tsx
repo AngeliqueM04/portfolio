@@ -35,7 +35,7 @@ export function Timeline02({ heading, items, secondary = false }: Props) {
   const reduce = useReducedMotion()
 
   return (
-    <section className={secondary ? "mt-16" : undefined}>
+    <section className={secondary ? "mt-8 sm:mt-10" : undefined}>
       <h2
         className={`font-serif tracking-tight text-fg ${
           secondary

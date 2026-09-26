@@ -12,7 +12,7 @@ export function HomepageHighlights() {
 
   return (
     <section className="bg-bg" aria-labelledby="highlights-heading">
-      <div className="mx-auto max-w-6xl px-5 pt-8 pb-16 sm:px-8 sm:pt-10 sm:pb-20">
+      <div className="section-pad">
         <div className="max-w-2xl">
           <p className="eyebrow">Highlighted work</p>
           <h2

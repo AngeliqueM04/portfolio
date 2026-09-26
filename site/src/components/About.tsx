@@ -3,7 +3,7 @@ import { bio, mission } from "@/data/content"
 export function About() {
   return (
     <section className="bg-bg" aria-labelledby="about-heading">
-      <div className="mx-auto max-w-6xl px-5 pt-16 pb-8 sm:px-8 sm:pt-20 sm:pb-10">
+      <div className="section-pad">
         <h2
           id="about-heading"
           className="font-serif text-3xl font-semibold tracking-tight text-fg"

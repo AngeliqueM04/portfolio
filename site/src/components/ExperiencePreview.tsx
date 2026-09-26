@@ -9,7 +9,7 @@ export function ExperiencePreview() {
       className="bg-bg"
       aria-labelledby="experience-preview-heading"
     >
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <div className="section-pad">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Experience</p>
