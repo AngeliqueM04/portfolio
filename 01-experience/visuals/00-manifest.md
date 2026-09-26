@@ -32,3 +32,11 @@ Do not add the Policies Impact Model chart, it carries the team's own disclosure
 - `case_study_comparison.png`, DTI versus LTV threshold shapes and four-case outcome comparison
 - `blk015_race_gap_comparison.png`, unmatched versus full-feature-matched race gap by group
 - `gender_vs_race_resolution.png`, gender fully explained versus race residual
+
+## Fraud Detection (original filenames)
+- `chart_missingness.png`, missingness distribution across columns, drop-or-keep-as-signal
+- `chart_daily_volume_fraud_rate.png`, daily transaction volume and daily fraud rate over 182 days
+- `chart_model_comparison_pr.png`, precision-recall curves for Decision Tree, Random Forest, XGBoost
+- `chart_shap_summary.png`, top 15 SHAP features for fraud predictions
+- `chart_pdp_transactionamt.png`, partial dependence of transaction amount on fraud probability
+- `chart_segment_fpr_quintile.png`, false-positive rate by transaction amount quintile (U-shape)

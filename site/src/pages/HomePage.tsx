@@ -1,14 +1,14 @@
 import { BioMission } from "@/components/BioMission"
 import { ExperiencePreview } from "@/components/ExperiencePreview"
 import { Hero } from "@/components/Hero"
-import { WorkPreview } from "@/components/WorkPreview"
+import { HomepageHighlights } from "@/components/HomepageHighlights"
 
 export function HomePage() {
   return (
     <>
       <Hero />
+      <HomepageHighlights />
       <BioMission />
-      <WorkPreview />
       <ExperiencePreview />
     </>
   )

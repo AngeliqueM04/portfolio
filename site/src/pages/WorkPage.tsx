@@ -190,6 +190,10 @@ function SinglePhaseBody({ study }: { study: CaseStudy }) {
         text={study.result}
         visuals={bySection("result")}
       />
+
+      {study.limitations ? (
+        <NarrativeBlock label="Limitations" text={study.limitations} />
+      ) : null}
     </>
   )
 }
@@ -212,6 +216,11 @@ function CaseArticle({
       <h2 className="mt-2 font-serif text-2xl font-semibold leading-snug tracking-tight text-fg sm:text-3xl">
         {study.title}
       </h2>
+      {study.category ? (
+        <p className="mt-2 font-serif text-sm italic text-fg-muted">
+          {study.category}
+        </p>
+      ) : null}
       <p className="mt-2 font-serif text-base italic leading-relaxed text-fg-muted">
         {study.byline}
       </p>

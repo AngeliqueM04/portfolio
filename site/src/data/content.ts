@@ -60,11 +60,13 @@ export type CaseStudy = {
   title: string
   byline: string
   preview: string
+  category?: string
   /** Single-phase studies use these top-level fields. */
   stats: Stat[]
   problem: string
   approach: string
   result: string
+  limitations?: string
   thesis?: ThesisBlock[]
   tables: DataTable[]
   visuals: FloatedVisual[]
@@ -72,6 +74,17 @@ export type CaseStudy = {
   phases?: CasePhase[]
   closing?: string
   scopeNote?: string
+}
+
+export type HomepageHighlight = {
+  id: string
+  title: string
+  category: string
+  problem: string
+  approach: string
+  result: string
+  whyItMatters: string
+  graph: { src: string; alt: string }
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -296,6 +309,77 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
   },
+
+  {
+    id: "fraud-detection",
+    title: "Fraud Detection Model on Real E-Commerce Transactions",
+    byline: "Independent project, IEEE-CIS Fraud Detection dataset (Kaggle)",
+    category: "Machine Learning",
+    preview:
+      "XGBoost at 0.53 PR-AUC on a 3.5% fraud base rate, catching about half of fraud while wrongly declining 1.82% of legitimate transactions.",
+    stats: [
+      {
+        label: "XGBoost PR-AUC",
+        value: "0.53",
+        note: "Best of three models on the locked test set",
+        emphasis: "lead",
+      },
+      {
+        label: "False decline rate",
+        value: "1.82%",
+        note: "At ~50% fraud recall",
+        emphasis: "secondary",
+      },
+      {
+        label: "Fraud base rate",
+        value: "3.5%",
+        note: "590,540 transactions",
+        emphasis: "secondary",
+      },
+    ],
+    problem:
+      "E-commerce platforms lose real money to fraud, but a model tuned only to catch fraud aggressively ends up blocking legitimate customers, which costs a business just as much in a different way. Making the problem harder, only 3.5% of transactions in a typical dataset are actually fraudulent, so a naive accuracy score can look excellent while catching almost nothing real. This project treats that tradeoff as the actual problem to solve, not an afterthought once a headline metric looks good.",
+    approach:
+      "Built a fraud detection pipeline on 590,540 real e-commerce transactions (a 3.5% fraud rate) spanning roughly 182 days, merging two source files on transaction ID and expanding to 499 features after cleaning. Verified data integrity first, no duplicate keys, no row count drift after the merge. Rather than dropping fields that were 90%+ empty, tested whether the absence of data was itself predictive, it was, so missingness got encoded as a feature instead of thrown away.\n\nSplit the data chronologically (60/20/20 by transaction time, never randomly shuffled), since a real fraud system only ever predicts the future from the past, across a window where the daily fraud rate itself swung from 1.1% to 7.0%.\n\nCompared three model types (Decision Tree, Random Forest, XGBoost) and ran a leakage audit checking every feature's standalone predictive power before trusting any result.\n\nA methods finding worth stating on its own: tuning XGBoost with standard random cross-validation and with time-respecting cross-validation gave different answers, random CV kept rewarding more model complexity all the way up, while time-respecting CV correctly flagged that the most complex setting actually performed worse on genuinely future data. Tested both candidates on the real held-out test set to settle it: the time-respecting choice won by a real margin. This is the same category of catch as MortgageIQ's target leakage bug, a standard validation approach that looked fine and wasn't, caught before it shipped.",
+    result:
+      "XGBoost was the strongest of the three models tested (Decision Tree 0.36, Random Forest 0.45, XGBoost 0.53 on PR-AUC, the right metric here since accuracy alone is misleading when only 3.5% of transactions are fraud).\n\nAt an operating point catching about half of all fraud, the model wrongly declined 1.82% of legitimate transactions, 2,073 false declines against 2,032 real fraud cases caught, a deliberate tradeoff point, not an accident. The leakage audit came back clean, the single strongest individual feature only reached 0.68 AUC on its own, a real signal, not a sign the model was secretly seeing the answer.\n\nExplainability was checked two independent ways rather than resting the claim on one method.\n\nA segment robustness check turned up something not obvious going in: false-positive rates were highest at both very small and very large transaction amounts, a U-shape, not the \"only small transactions get flagged\" pattern that's often assumed.",
+    limitations:
+      "Most of the model's top features are anonymized fields the data provider never explained, a real ceiling on how far an \"explainable to a compliance team\" claim can honestly go here. There's also still a real gap between training and test performance, suggesting more room to simplify the model further. This is a batch, retrospective model, not a real-time system, no streaming inference or deployment infrastructure, that's out of scope by design, the same boundary MortgageIQ draws between research findings and an actual shippable product.",
+    tables: [],
+    visuals: [
+      {
+        src: asset("visuals/chart_missingness.png"),
+        alt: "Distribution of missingness across all columns, the basis for each drop-or-keep-as-signal decision",
+        beside: "approach",
+      },
+      {
+        src: asset("visuals/chart_daily_volume_fraud_rate.png"),
+        alt: "Daily transaction volume and daily fraud rate across the full 182-day window",
+        beside: "approach",
+        size: "wide",
+      },
+      {
+        src: asset("visuals/chart_model_comparison_pr.png"),
+        alt: "Precision-recall curves for Decision Tree, Random Forest, and XGBoost on the locked test set",
+        beside: "result",
+      },
+      {
+        src: asset("visuals/chart_shap_summary.png"),
+        alt: "Top 15 features driving fraud predictions and which direction each one pushes the model",
+        beside: "result",
+      },
+      {
+        src: asset("visuals/chart_pdp_transactionamt.png"),
+        alt: "Partial dependence of transaction amount on predicted fraud probability",
+        beside: "result",
+      },
+      {
+        src: asset("visuals/chart_segment_fpr_quintile.png"),
+        alt: "False-positive rate by transaction amount quintile, showing a U-shape",
+        beside: "result",
+      },
+    ],
+  },
   {
     id: "iome",
     title: "Can Ashley Retire Securely? iOme Research Challenge 2026",
@@ -481,6 +565,61 @@ export type ExperienceItem = {
   body: string
   note?: string
 }
+
+
+export const homepageHighlights: HomepageHighlight[] = [
+  {
+    id: "mortgageiq",
+    title: "MortgageIQ",
+    category: "Credit Risk",
+    problem:
+      "Small mortgage lenders don't have access to the kind of risk-scoring tools big banks use, and any model built to fill that gap has to hold up to fair-lending law, not just look accurate.",
+    approach:
+      "Built three models in sequence (Phase 1, Agent 1, Agent 2), comparing model types, stress-testing against a real historical crisis (the 2008 downturn), and testing fairness across gender and race.",
+    result:
+      "The first version looked nearly perfect, a 99.6% accuracy score, until she caught it cheating, using information a real application wouldn't have. The honest rebuild scored 83%, closed a fairness gap for gender entirely, and left a smaller race-based gap disclosed as unresolved rather than hidden.",
+    whyItMatters:
+      "In lending, a model that looks accurate isn't the same as a model that's trustworthy. This project shows the discipline to catch your own mistake, fix it, and be upfront about what's still unsolved, exactly what a regulated lending or fintech risk team actually needs.",
+    graph: {
+      src: asset("visuals/gender_vs_race_resolution.png"),
+      alt: "Gender fully explained versus race residual after matching",
+    },
+  },
+  {
+    id: "fraud-detection",
+    title: "Fraud Detection",
+    category: "Machine Learning",
+    problem:
+      "Detect fraudulent online transactions in a large, imbalanced dataset without flooding legitimate customers with false alerts.",
+    approach:
+      "Built a Python fraud detection pipeline on 590,000+ transactions and 499 features, comparing multiple model types to find the strongest performer.",
+    result:
+      "The selected model (XGBoost) scored 0.53 on the metric that matters most for rare-event detection (PR-AUC), catching about half of all fraud while wrongly flagging fewer than 2 in 100 legitimate transactions.",
+    whyItMatters:
+      "Every fraud system trades off catching bad actors against not punishing good customers. This shows she can tune a model to that real tradeoff deliberately, not just chase the highest score on paper.",
+    graph: {
+      src: asset("visuals/chart_model_comparison_pr.png"),
+      alt: "Precision-recall curves comparing Decision Tree, Random Forest, and XGBoost",
+    },
+  },
+  {
+    id: "iome",
+    title: "iOme Retirement Challenge",
+    category: "Retirement Policy",
+    problem:
+      "America's retirement system, Social Security, 401(k)s, and personal savings, is failing at once, and the failure lands hardest on the people least able to absorb it.",
+    approach:
+      "Built a simulation modeling 10,000 possible financial futures for workers at three income levels, then designed and individually priced three policy fixes.",
+    result:
+      "A typical worker's odds of retiring securely are close to a coin flip today, and get worse once Social Security's funding shortfall hits in 2033. The strongest fix alone freed up $71.57 trillion in public support, but even all three reforms combined still left nearly half of middle-income workers short.",
+    whyItMatters:
+      "This is policy research with real stakes, not a classroom exercise, and it ranked in the top 3 nationally. It also shows the same honesty pattern as MortgageIQ, a solution that helps, stated plainly as not being a full fix.",
+    graph: {
+      src: asset("visuals/08-iome-model-output-trajectory.png"),
+      alt: "Retirement security by age and income bracket across policy scenarios",
+    },
+  },
+]
 
 export const professionalExperience: ExperienceItem[] = [
   {
