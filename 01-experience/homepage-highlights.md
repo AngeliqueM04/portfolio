@@ -46,7 +46,7 @@ Top 3 National Finalist, iOme Research Challenge
 
 **Result:** A typical worker's odds of retiring securely are close to a coin flip today, and worsen once Social Security's funding shortfall hits in 2033: a low-income worker needs roughly 70 times the additional savings a high-income worker needs just to stay on track. The strongest fix alone freed up $71.57 trillion in public support, but even all three reforms combined still left nearly half of middle-income workers short of a secure retirement.
 
-**Why it matters:** Most retirement policy proposals are presented as solutions. This project tested that framing directly, pricing three reforms individually and reporting the actual result, including where it fell short: nearly half of middle-income workers remained insecure even with every reform applied. Quantifying a policy's real limits alongside its intended benefit is what distinguishes rigorous policy analysis from advocacy.
+**Why it matters:** Most retirement policy proposals are presented as solutions. This project tested that framing directly, pricing three reforms individually and reporting the actual result, including where it fell short: nearly half of middle-income workers remained insecure even with every reform applied. Quantifying a policy's real limits alongside its intended benefit distinguishes rigorous policy analysis from advocacy. That approach earned this project recognition as a top 3 national finalist.
 
 **Graph:** `08-iome-model-output-trajectory.png`
 
