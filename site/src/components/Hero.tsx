@@ -56,7 +56,7 @@ export function Hero() {
               to="/work"
               className="inline-flex items-center rounded-sm bg-hero-fg px-6 py-3 text-sm font-medium text-hero transition-opacity hover:opacity-90"
             >
-              See the detailed work
+              See detailed work
             </Link>
           </div>
         </div>

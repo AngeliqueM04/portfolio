@@ -100,7 +100,7 @@ export function HomepageHighlights() {
             to="/work"
             className="font-sans text-sm font-medium text-accent underline-offset-4 hover:underline"
           >
-            See the detailed work
+            See detailed work
           </Link>
         </div>
       </div>
